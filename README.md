@@ -101,7 +101,7 @@ SafePal Pro is a comprehensive disaster preparedness application designed for Pa
 
 ## 🚀 Live Demo
 
-[https://YOUR_USERNAME.github.io/safepal](https://YOUR_USERNAME.github.io/safepal)
+[https://waqashaider-gethub.github.io/Safepal-Pro/
 
 ## 📦 Installation
 
