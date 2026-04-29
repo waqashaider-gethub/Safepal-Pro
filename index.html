@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SafePal Pro — Disaster Preparedness</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <div class="header-top">
+                <h1>🛟 SafePal Pro</h1>
+                <button id="themeToggle" class="theme-btn">🌙</button>
+            </div>
+            <p>Your offline disaster companion</p>
+        </div>
+
+        <!-- SOS BUTTON -->
+        <div class="sos-section">
+            <button id="sosBtn" class="sos-btn">🆘 SOS EMERGENCY 🆘</button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="contacts">📞 Contacts</button>
+            <button class="tab-btn" data-tab="sosMsg">📨 SOS Msg</button>
+            <button class="tab-btn" data-tab="evacuation">🗺️ Evacuation</button>
+            <button class="tab-btn" data-tab="firstaid">🩺 First Aid</button>
+            <button class="tab-btn" data-tab="checklist">🎒 Checklist</button>
+            <button class="tab-btn" data-tab="location">📍 My Location</button>
+            <button class="tab-btn" data-tab="settings">⚙️ Settings</button>
+        </div>
+
+        <!-- Contacts Tab -->
+        <div id="contacts" class="tab-content active">
+            <h2>📞 Emergency Contacts</h2>
+            <div class="emergency-cards">
+                <div class="contact-card emergency" data-number="15">
+                    <div class="contact-name">🚓 Police</div>
+                    <div class="contact-number">15</div>
+                    <button class="dial-btn">📞 Call</button>
+                </div>
+                <div class="contact-card emergency" data-number="115">
+                    <div class="contact-name">🚑 Ambulance</div>
+                    <div class="contact-number">115</div>
+                    <button class="dial-btn">📞 Call</button>
+                </div>
+                <div class="contact-card emergency" data-number="16">
+                    <div class="contact-name">🔥 Fire</div>
+                    <div class="contact-number">16</div>
+                    <button class="dial-btn">📞 Call</button>
+                </div>
+            </div>
+            
+            <h3>👨‍👩‍👧 Personal Contacts</h3>
+            <div id="personalContacts"></div>
+            <button id="addContactBtn" class="secondary-btn">+ Add Contact</button>
+            <p class="last-updated" id="contactsLastUpdated"></p>
+        </div>
+
+        <!-- SOS Message Tab -->
+        <div id="sosMsg" class="tab-content">
+            <h2>📨 SOS Message Template</h2>
+            <p class="sub">Edit your emergency message (will include location automatically)</p>
+            <textarea id="sosTemplate" rows="4" placeholder="I need help! This is an emergency. My location: [LOCATION]"></textarea>
+            <button id="saveSosTemplateBtn" class="secondary-btn">💾 Save Template</button>
+            <div class="sos-preview">
+                <h3>Preview with location:</h3>
+                <div id="sosPreview" class="preview-box"></div>
+            </div>
+        </div>
+
+        <!-- Evacuation Tab (Improved) -->
+        <div id="evacuation" class="tab-content">
+            <h2>🗺️ Evacuation Guides</h2>
+            <div class="disaster-list">
+                <div class="disaster-item" data-disaster="fire">🔥 Fire</div>
+                <div class="disaster-item" data-disaster="earthquake">🌍 Earthquake</div>
+                <div class="disaster-item" data-disaster="flood">🌊 Flood</div>
+                <div class="disaster-item" data-disaster="hurricane">🌀 Hurricane</div>
+                <div class="disaster-item" data-disaster="tsunami">🌊 Tsunami</div>
+                <div class="disaster-item" data-disaster="tornado">🌪️ Tornado</div>
+                <div class="disaster-item" data-disaster="landslide">⛰️ Landslide</div>
+            </div>
+            <div id="evacuationDetail" class="evacuation-detail hidden">
+                <button class="back-btn evac-back">← Back</button>
+                <h3 id="disasterTitle"></h3>
+                <div id="disasterSteps"></div>
+                <div id="disasterMap" class="simple-map"></div>
+            </div>
+        </div>
+
+        <!-- First Aid Tab (Expanded) -->
+        <div id="firstaid" class="tab-content">
+            <h2>🩺 First Aid Guides</h2>
+            <div class="firstaid-list">
+                <div class="firstaid-item" data-aid="burn">🔥 Burns</div>
+                <div class="firstaid-item" data-aid="cut">🩸 Cuts & Bleeding</div>
+                <div class="firstaid-item" data-aid="cpr">🫀 CPR</div>
+                <div class="firstaid-item" data-aid="fracture">🦴 Fracture</div>
+                <div class="firstaid-item" data-aid="choking">🫁 Choking</div>
+                <div class="firstaid-item" data-aid="heartattack">❤️ Heart Attack</div>
+                <div class="firstaid-item" data-aid="stroke">🧠 Stroke (FAST)</div>
+                <div class="firstaid-item" data-aid="seizure">⚡ Seizure</div>
+                <div class="firstaid-item" data-aid="snakebite">🐍 Snake Bite</div>
+                <div class="firstaid-item" data-aid="hypothermia">❄️ Hypothermia</div>
+            </div>
+            <div id="firstaidDetail" class="firstaid-detail hidden">
+                <button class="back-btn aid-back">← Back</button>
+                <h3 id="aidTitle"></h3>
+                <div id="aidSteps"></div>
+            </div>
+        </div>
+
+        <!-- Checklist Tab -->
+        <div id="checklist" class="tab-content">
+            <h2>🎒 Emergency Kit Checklist</h2>
+            <div class="progress-bar-container">
+                <div class="progress-label">Preparedness: <span id="checklistProgress">0</span>%</div>
+                <div class="progress-bar-bg"><div id="checklistProgressBar" class="progress-bar-fill"></div></div>
+            </div>
+            <div id="checklistItems"></div>
+            <button id="resetChecklistBtn" class="danger-btn">Reset Checklist</button>
+            <p class="last-updated" id="checklistLastUpdated"></p>
+        </div>
+
+        <!-- Location Tab (Enhanced) -->
+        <div id="location" class="tab-content">
+            <h2>📍 My Location</h2>
+            <button id="getGpsBtn" class="secondary-btn">📍 Get Current GPS</button>
+            <div id="gpsCoords" class="gps-box"></div>
+            <textarea id="locationNote" rows="3" placeholder="Address, building name, landmarks..."></textarea>
+            <button id="saveLocationBtn" class="secondary-btn">💾 Save Location</button>
+            <button id="shareLocationBtn" class="share-btn">📤 Share Location via SMS</button>
+            <div id="savedLocationMsg" class="saved-msg hidden">✓ Saved!</div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div id="settings" class="tab-content">
+            <h2>⚙️ Settings</h2>
+            <div class="setting-item">
+                <span>🌙 Dark Mode</span>
+                <button id="darkModeToggle" class="toggle-btn">Enable</button>
+            </div>
+            <div class="setting-item">
+                <span>💾 Export All Data</span>
+                <button id="exportDataBtn" class="secondary-btn-small">Export to File</button>
+            </div>
+            <div class="setting-item">
+                <span>📥 Import Data</span>
+                <input type="file" id="importFileInput" accept=".json" style="display:none">
+                <button id="importDataBtn" class="secondary-btn-small">Import from File</button>
+            </div>
+            <div class="setting-item">
+                <span>🗑️ Reset All Data</span>
+                <button id="resetAllDataBtn" class="danger-btn-small">Reset Everything</button>
+            </div>
+            <p class="version">SafePal Pro v2.0 • Works offline</p>
+        </div>
+
+        <div class="footer">
+            <p>⚠️ Works offline • One-tap SOS • GPS location</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

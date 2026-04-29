@@ -1,0 +1,783 @@
+/* ============================================================
+   SAFEPAL PRO — style.css
+   Aesthetic: Industrial Tactical / Emergency Operations Center
+   Fully compatible with HTML structure and script.js
+   ============================================================ */
+
+/* ── VARIABLES ── */
+:root {
+    --bg-0: #0a0c0e;
+    --bg-1: #12161a;
+    --bg-2: #1a1f24;
+    --bg-3: #222930;
+    --bg-4: #2c3540;
+    --border: #2e3a44;
+    --border-bright: #3d4f5c;
+    --text-0: #e8ecef;
+    --text-1: #a8b8c4;
+    --text-2: #6a8090;
+    --accent: #ff6b35;
+    --accent-dim: rgba(255, 107, 53, 0.15);
+    --accent-glow: rgba(255, 107, 53, 0.4);
+    --green: #3ddc84;
+    --green-dim: rgba(61, 220, 132, 0.12);
+    --red: #ff3d5a;
+    --red-dim: rgba(255, 61, 90, 0.15);
+    --yellow: #ffd166;
+    --yellow-dim: rgba(255, 209, 102, 0.12);
+    --blue: #4db8ff;
+    --radius: 6px;
+    --radius-lg: 10px;
+    --font-display: 'Rajdhani', 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'Share Tech Mono', 'SF Mono', monospace;
+    --font-body: 'Barlow', system-ui, sans-serif;
+    --tab-h: 52px;
+    --header-h: auto;
+    --transition: 0.18s ease;
+}
+
+/* Light Theme */
+body.light {
+    --bg-0: #e8edf2;
+    --bg-1: #ffffff;
+    --bg-2: #f0f4f8;
+    --bg-3: #e2e8f0;
+    --bg-4: #d0d8e4;
+    --border: #cbd5e1;
+    --border-bright: #a0aec0;
+    --text-0: #1a2a3a;
+    --text-1: #3a4e5c;
+    --text-2: #6a8090;
+    --accent: #d94f1c;
+    --accent-dim: rgba(217, 79, 28, 0.1);
+    --accent-glow: rgba(217, 79, 28, 0.3);
+    --green: #1a9e5a;
+    --green-dim: rgba(26, 158, 90, 0.1);
+    --red: #d42040;
+    --red-dim: rgba(212, 32, 64, 0.1);
+}
+
+/* Dark Theme (default) */
+body {
+    --bg-0: #0a0c0e;
+    --bg-1: #12161a;
+    --bg-2: #1a1f24;
+    --bg-3: #222930;
+    --bg-4: #2c3540;
+    --border: #2e3a44;
+    --border-bright: #3d4f5c;
+    --text-0: #e8ecef;
+    --text-1: #a8b8c4;
+    --text-2: #6a8090;
+    --accent: #ff6b35;
+    --accent-dim: rgba(255, 107, 53, 0.15);
+    --accent-glow: rgba(255, 107, 53, 0.4);
+    --green: #3ddc84;
+    --green-dim: rgba(61, 220, 132, 0.12);
+    --red: #ff3d5a;
+    --red-dim: rgba(255, 61, 90, 0.15);
+    --yellow: #ffd166;
+    --blue: #4db8ff;
+}
+
+/* ── RESET & BASE ── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 14px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg-0);
+    color: var(--text-0);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    transition: background var(--transition), color var(--transition);
+}
+
+/* Background texture */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(255,255,255,0.012) 24px, rgba(255,255,255,0.012) 25px),
+        repeating-linear-gradient(90deg, transparent, transparent 24px, rgba(255,255,255,0.012) 24px, rgba(255,255,255,0.012) 25px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── APP CONTAINER ── */
+.app-container {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 16px;
+}
+
+/* ── HEADER ── */
+.header {
+    background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.header h1 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--accent);
+}
+
+.header p {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-2);
+    letter-spacing: 1px;
+}
+
+.theme-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg-2);
+    color: var(--text-1);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition), border-color var(--transition);
+}
+
+.theme-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ── SOS BUTTON ── */
+.sos-section {
+    margin-bottom: 20px;
+}
+
+.sos-btn {
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 18px;
+    border: none;
+    border-radius: 60px;
+    width: 100%;
+    cursor: pointer;
+    animation: pulse 1.5s infinite;
+    box-shadow: 0 4px 20px rgba(192,57,43,0.4);
+    font-family: var(--font-display);
+    letter-spacing: 2px;
+    transition: transform 0.1s ease;
+}
+
+.sos-btn:active {
+    transform: scale(0.98);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 4px 20px rgba(192,57,43,0.4); }
+    50% { transform: scale(1.02); box-shadow: 0 4px 30px rgba(192,57,43,0.6); }
+    100% { transform: scale(1); box-shadow: 0 4px 20px rgba(192,57,43,0.4); }
+}
+
+/* ── TABS ── */
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+    background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 8px;
+}
+
+.tab-btn {
+    flex: 1;
+    min-width: 70px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: var(--font-display);
+    letter-spacing: 1px;
+    color: var(--text-1);
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: all var(--transition);
+}
+
+.tab-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.tab-btn:hover:not(.active) {
+    background: var(--bg-3);
+    border-color: var(--border-bright);
+}
+
+/* ── TAB CONTENT ── */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.25s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── HEADINGS ── */
+h2 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+    color: var(--text-0);
+    letter-spacing: 1px;
+    border-left: 3px solid var(--accent);
+    padding-left: 12px;
+}
+
+h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    margin: 16px 0 12px;
+    color: var(--text-1);
+    letter-spacing: 1px;
+}
+
+.sub {
+    font-size: 0.8rem;
+    color: var(--text-2);
+    margin-bottom: 12px;
+}
+
+/* ── EMERGENCY CARDS ── */
+.emergency-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.contact-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--accent);
+}
+
+.contact-card.emergency::before {
+    background: var(--red);
+}
+
+.contact-name {
+    flex: 2;
+    font-weight: 600;
+    color: var(--text-0);
+}
+
+.contact-number {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.dial-btn {
+    background: var(--green-dim);
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 6px 14px;
+    border-radius: var(--radius);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.dial-btn:hover {
+    background: var(--green);
+    color: white;
+}
+
+/* ── PERSONAL CONTACTS ── */
+#personalContacts {
+    margin-bottom: 12px;
+}
+
+.personal-contact {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.personal-contact strong {
+    color: var(--text-0);
+}
+
+.personal-contact small {
+    color: var(--text-2);
+    font-family: var(--font-mono);
+}
+
+.delete-contact {
+    background: var(--red-dim);
+    border: 1px solid var(--red);
+    color: var(--red);
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all var(--transition);
+}
+
+.delete-contact:hover {
+    background: var(--red);
+    color: white;
+}
+
+/* ── BUTTONS ── */
+.secondary-btn {
+    background: var(--accent-dim);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    width: 100%;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.secondary-btn:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.danger-btn {
+    background: var(--red-dim);
+    border: 1px solid var(--red);
+    color: var(--red);
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    width: 100%;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.danger-btn:hover {
+    background: var(--red);
+    color: white;
+}
+
+.danger-btn-small {
+    background: var(--red-dim);
+    border: 1px solid var(--red);
+    color: var(--red);
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all var(--transition);
+}
+
+.secondary-btn-small {
+    background: var(--accent-dim);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all var(--transition);
+}
+
+.secondary-btn-small:hover, .danger-btn-small:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.share-btn {
+    background: var(--blue);
+    border: 1px solid var(--blue);
+    color: white;
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    width: 100%;
+    margin-top: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* ── SOS PREVIEW ── */
+.sos-preview {
+    margin-top: 16px;
+}
+
+.preview-box {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-1);
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+/* ── DISASTER / FIRST AID LISTS ── */
+.disaster-list, .firstaid-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.disaster-item, .firstaid-item {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all var(--transition);
+    font-weight: 500;
+    color: var(--text-1);
+}
+
+.disaster-item:hover, .firstaid-item:hover {
+    background: var(--bg-3);
+    border-color: var(--accent);
+    transform: translateX(4px);
+}
+
+/* ── DETAIL VIEWS (Evacuation & First Aid) ── */
+.evacuation-detail, .firstaid-detail {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+}
+
+.back-btn {
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    color: var(--text-1);
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    margin-bottom: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    transition: all var(--transition);
+}
+
+.back-btn:hover {
+    background: var(--bg-4);
+    border-color: var(--accent);
+}
+
+.disaster-steps, .aid-steps {
+    list-style-position: inside;
+    line-height: 1.8;
+    padding-left: 8px;
+}
+
+.disaster-steps li, .aid-steps li {
+    margin: 10px 0;
+    color: var(--text-1);
+}
+
+.simple-map {
+    margin-top: 16px;
+    padding: 12px;
+    background: var(--bg-3);
+    border-radius: var(--radius);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
+
+/* ── CHECKLIST ── */
+.progress-bar-container {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.progress-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: var(--text-2);
+    margin-bottom: 8px;
+}
+
+.progress-bar-bg {
+    background: var(--bg-3);
+    border-radius: 20px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background: linear-gradient(90deg, var(--accent), var(--yellow));
+    width: 0%;
+    height: 100%;
+    transition: width 0.4s ease;
+}
+
+.checklist-item {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.checklist-item:hover {
+    background: var(--bg-3);
+}
+
+.checklist-item input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--green);
+}
+
+.checklist-item label {
+    flex: 1;
+    cursor: pointer;
+    color: var(--text-1);
+}
+
+.checklist-item.completed label {
+    text-decoration: line-through;
+    color: var(--text-2);
+}
+
+/* ── LOCATION ── */
+.gps-box {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px;
+    margin: 12px 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: var(--text-1);
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-0);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    resize: vertical;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.saved-msg {
+    color: var(--green);
+    text-align: center;
+    margin-top: 8px;
+    animation: fadeIn 0.3s ease;
+}
+
+/* ── SETTINGS ── */
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.setting-item span {
+    color: var(--text-1);
+}
+
+.toggle-btn {
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    color: var(--text-1);
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.toggle-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.version {
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--text-2);
+    margin-top: 20px;
+    font-family: var(--font-mono);
+}
+
+/* ── FOOTER ── */
+.footer {
+    margin-top: 24px;
+    padding-top: 16px;
+    text-align: center;
+    font-size: 0.65rem;
+    color: var(--text-2);
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    letter-spacing: 1px;
+}
+
+/* ── LAST UPDATED ── */
+.last-updated {
+    font-size: 0.65rem;
+    color: var(--text-2);
+    text-align: right;
+    margin-top: 8px;
+    font-family: var(--font-mono);
+}
+
+/* ── UTILITY CLASSES ── */
+.hidden {
+    display: none;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+    .app-container {
+        padding: 12px;
+    }
+    
+    .header h1 {
+        font-size: 1.4rem;
+    }
+    
+    .tab-btn {
+        font-size: 0.65rem;
+        padding: 8px 8px;
+        min-width: 55px;
+    }
+    
+    .contact-card {
+        flex-wrap: wrap;
+    }
+    
+    .contact-number {
+        font-size: 1rem;
+    }
+    
+    h2 {
+        font-size: 1.1rem;
+    }
+    
+    .sos-btn {
+        font-size: 1.2rem;
+        padding: 14px;
+    }
+}
+
+/* ── DARK MODE TOGGLE STYLES ── */
+body.light .contact-card,
+body.light .personal-contact,
+body.light .checklist-item,
+body.light .disaster-item,
+body.light .firstaid-item,
+body.light .preview-box,
+body.light .gps-box,
+body.light .evacuation-detail,
+body.light .firstaid-detail {
+    background: var(--bg-2);
+}
+
+/* Smooth transitions for all theme-aware elements */
+.contact-card, .personal-contact, .checklist-item,
+.disaster-item, .firstaid-item, .preview-box,
+.gps-box, .evacuation-detail, .firstaid-detail,
+.tabs, .header, .progress-bar-container {
+    transition: background var(--transition), border-color var(--transition);
+}
