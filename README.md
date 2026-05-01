@@ -1,8 +1,8 @@
 # 🛟 SafePal Pro — Disaster Preparedness App (Pakistan)
 
-**Works offline • No internet needed • One-tap SOS • GPS location**
+• One-tap SOS • GPS location**
 
-SafePal Pro is a comprehensive disaster preparedness application designed for Pakistan's emergency response system. It provides instant access to emergency services, first aid guides, evacuation procedures, and personal emergency contacts — all working without an internet connection.
+SafePal Pro is a comprehensive disaster preparedness application designed for Pakistan's emergency response system. It provides instant access to emergency services, first aid guides, evacuation procedures, and personal emergency contacts.
 
 ## 🚨 Emergency Numbers (Pakistan)
 
@@ -59,7 +59,6 @@ SafePal Pro is a comprehensive disaster preparedness application designed for Pa
 - Location auto-inserts into SOS messages using `[LOCATION]` tag
 
 ### ⚙️ Settings & Data Management
-- 🌙 Dark / Light theme toggle
 - 💾 Export all data (contacts, checklist, location, SOS template) as JSON backup
 - 📥 Import previously saved backup
 - 🗑️ Reset all data
@@ -86,7 +85,7 @@ SafePal Pro is a comprehensive disaster preparedness application designed for Pa
 | HTML5 | Structure and content |
 | CSS3 | Styling, dark/light themes, responsive design |
 | JavaScript (ES6) | Application logic, localStorage, dynamic UI |
-| Geolocation API | GPS coordinates (works offline) |
+| Geolocation API | GPS coordinates
 | LocalStorage API | Persistent data storage (contacts, checklist, settings) |
 | PWA Manifest | Installable as native app |
 
